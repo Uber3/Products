@@ -103,14 +103,10 @@ class ProduktTest {
 
     @Test
     void generateProducts() {
-        int id = 10;
-        String tytul = "maslo";
-        BigDecimal price = new BigDecimal(100);
-        Produkt produkt = new Produkt(id, tytul, price);
-
-        List<Produkt> productsList = produkt.generateProducts();
+        List<Produkt> productsList = Produkt.generateProducts(50);
 
         assertFalse(productsList.isEmpty());
+        assertEquals(productsList.size(),50);
     }
 
 

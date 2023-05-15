@@ -1,5 +1,6 @@
 package com.example.demo.Produkty;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -15,12 +16,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @link
  */
 class OrderTest {
+    Produkt product1;
+    Produkt product2;
+    @BeforeEach
+    void setup() {
+       product1 = new Produkt(1, " bread", BigDecimal.valueOf(12));
+       product2 = new Produkt(2, " butter", BigDecimal.valueOf(10));
+    }
 
 
     @Test
     void setProducts() {
-        Produkt product1 = new Produkt(1, " bread", BigDecimal.valueOf(12));
-        Produkt product2 = new Produkt(2, " butter", BigDecimal.valueOf(10));
 
         Order order = new Order();
         List<Produkt> newProducts = new ArrayList<>();
@@ -29,22 +35,22 @@ class OrderTest {
         order.setProducts(newProducts);
 
         assertFalse(order.getProducts().isEmpty());
+        assertEquals(order.getProducts().size(), 2);
+        assertTrue(order.getProducts().get(0).equals(product1));
     }
 
     @Test
     void add() {
-        Produkt product1 = new Produkt(1, " bread", BigDecimal.valueOf(12));
 
         Order order = new Order();
         order.add(product1);
 
         assertFalse(order.getProducts().isEmpty());
-
+        assertTrue(order.getProducts().get(0).equals(product1));
     }
 
     @Test
     void getProducts() {
-        Produkt product1 = new Produkt(1, " bread", BigDecimal.valueOf(12));
 
         Order order = new Order();
         order.add(product1);
@@ -56,14 +62,12 @@ class OrderTest {
 
     @Test
     void getTotalSum() {
-        Produkt product1 = new Produkt(1, " bread", BigDecimal.valueOf(12));
-        Produkt product2 = new Produkt(2, " butter", BigDecimal.valueOf(10));
 
         Order order = new Order();
         order.add(product1);
         order.add(product2);
 
-        assertEquals(order.getTotalSum(),BigDecimal.valueOf(22));
+        assertEquals(order.getTotalSum(), BigDecimal.valueOf(22));
 
     }
 
@@ -78,7 +82,6 @@ class OrderTest {
 
     @Test
     void getUpdatedTime() {
-        Produkt product1 = new Produkt(1, " bread", BigDecimal.valueOf(12));
         Order order = new Order();
         LocalDateTime time = order.getCreatedTime();
 

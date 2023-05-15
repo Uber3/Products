@@ -50,15 +50,16 @@ public class Produkt {
         return sum;
     }
 
-    public List<Produkt> generateProducts() {
+    public static List<Produkt> generateProducts(int n) {
+
+        Random random = new Random();
         List<Produkt> productsList = new ArrayList<>();
 
-        int numberOfProducts = new Random().nextInt(50); // a random number from 1 to 49
         int id = 1;
 
-        for (int i = 1; i <= numberOfProducts; i++) {
+        for (int i = 1; i <= n; i++) {
             String title = randomString();
-            BigDecimal price = BigDecimal.valueOf(new Random().nextInt(MAX_VALUE)); //random number from 1 to Integer.MaxValue
+            BigDecimal price = BigDecimal.valueOf(random.nextInt(MAX_VALUE)); //random number from 1 to Integer.MaxValue
 
             productsList.add(new Produkt(id++, title, price));
         }
