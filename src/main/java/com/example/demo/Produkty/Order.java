@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Order {
+
+    private int id;
     private List<Produkt> products;
     private BigDecimal totalSum;
     private final LocalDateTime created;
@@ -21,6 +23,13 @@ public class Order {
         this.totalSum = BigDecimal.ZERO;
         this.created = LocalDateTime.now();
         this.updated = LocalDateTime.now();
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(final int id) {
+        this.id = id;
     }
 
     public List<Produkt> getProducts() {
