@@ -27,8 +27,6 @@ class ProduktTest {
         assertEquals(id, zmienna.getId());
         assertEquals(tytul, zmienna.getTytul());
         assertEquals(price, zmienna.getPrice());
-
-
     }
 
     @Test

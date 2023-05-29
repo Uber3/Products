@@ -12,7 +12,8 @@ import java.util.stream.IntStream;
 
 public class Order {
 
-    private int id;
+    private int orderId;
+    private int userId;
     private List<Produkt> products;
     private BigDecimal totalSum;
     private final LocalDateTime created;
@@ -25,11 +26,19 @@ public class Order {
         this.updated = LocalDateTime.now();
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
-    public void setId(final int id) {
-        this.id = id;
+
+    public void setUserId(final int userId) {
+        this.userId = userId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+    public void setOrderId(final int orderId) {
+        this.orderId = orderId;
     }
 
     public List<Produkt> getProducts() {

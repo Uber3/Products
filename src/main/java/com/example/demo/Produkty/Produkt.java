@@ -15,7 +15,7 @@ public class Produkt {
 
     public Produkt(int id, String tytul, BigDecimal cena) {
 
-        price = cena;
+        this.price = cena;
         this.id = id;
         this.tytul = tytul;
     }

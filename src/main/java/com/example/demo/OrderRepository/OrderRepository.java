@@ -5,9 +5,12 @@ package com.example.demo.OrderRepository;/*
 
 import com.example.demo.Produkty.Order;
 import com.example.demo.Produkty.Produkt;
+import com.example.demo.Users.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OrderRepository {
@@ -17,14 +20,20 @@ public class OrderRepository {
         this.orders = orders;
     }
 
-    public Order create(int id, List<Produkt> products) {
+    public Order create(int orderId, int userId, List<Produkt> products) {
+        if (this.getById(orderId) != null) {
+            throw new IllegalArgumentException("Order already exists:" + orderId);
+        }
         Order order = new Order();
-        order.setId(id);
+        order.setOrderId(orderId);
+        order.setUserId(userId);
         order.setProducts(products);
         orders.add(order);
 
         return order;
     }
+
+
 
    /* public void delete(int id) throws Exception {
         for (Order order : orders) {
@@ -34,22 +43,29 @@ public class OrderRepository {
         }
     }*/
 
-    public void delete(int id) throws Exception {
+/*
+    public void delete(int orderId) {
+        this.orders = orders.stream()
+                .filter(order -> order.getOrderId() != orderId)
+                .collect(Collectors.toList());
+    } */
+
+      public void delete(int orderId) throws Exception {
         var itemIndex = IntStream.range(0, orders.size())
-                .filter(i -> orders.get(i).getId() == id)
+                .filter(i -> orders.get(i).getOrderId() == orderId)
                 .findFirst()
                 .orElse(-1);
 
         if (itemIndex != -1) {
             orders.remove(itemIndex);
         } else {
-            throw new Exception("ID is not found: " + id);
+            throw new Exception("ID is not found: " + orderId);
         }
 
     }
 
     public List<Order> getAll() {
-        return orders;
+        return new ArrayList<>(orders);
     }
 
    /* public Order getById(int id) {
@@ -61,14 +77,23 @@ public class OrderRepository {
         return null;
     }*/
 
-    public Order getById(int id) {
+    /*
+    public Order getById(int orderId) {
+        Optional<Order> first = orders.stream()
+                .filter(order -> order.getOrderId() == orderId)
+                .findFirst();
+
+        Order order = first.orElseThrow(IllegalArgumentException::new);
+        return order;
+    } */
+
+   public Order getById(int orderId) {
         var index = IntStream.range(0, orders.size())
-                .filter(i -> orders.get(i).getId() == id)
+                .filter(i -> orders.get(i).getOrderId() == orderId)
                 .findFirst()
                 .orElse(-1);
 
-        return (index != -1) ? orders.get(id) : null;
+        return (index != -1) ? orders.get(orderId) : null;
     }
-
 }
 

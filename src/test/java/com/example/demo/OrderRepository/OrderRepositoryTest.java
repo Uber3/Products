@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
     Order order;
     OrderRepository orderRepository;
     final int START_INDEX = 0;
+    final int USER_ID = 1;
 
 
     @BeforeEach
@@ -42,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
     @Test
     void create() {
-        order = orderRepository.create(START_INDEX, products);
+        order = orderRepository.create(START_INDEX, USER_ID, products);
 
         assertFalse(order.getProducts().isEmpty());
         assertEquals(order.getProducts().size(), 2);
@@ -51,7 +52,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
     @Test
     void delete() throws Exception {
-        order = orderRepository.create(START_INDEX, products);
+        order = orderRepository.create(START_INDEX,USER_ID, products);
         orderRepository.delete(START_INDEX);
 
         assertFalse(orders.contains(order));
@@ -60,7 +61,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
     @Test
     void getAll() {
-        order = orderRepository.create(START_INDEX, products);
+        order = orderRepository.create(START_INDEX, USER_ID, products);
         List<Order> newOrderList = orderRepository.getAll();
 
         assertFalse(newOrderList.isEmpty());
@@ -70,10 +71,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
     @Test
     void getById() {
-        order = orderRepository.create(START_INDEX, products);
+        order = orderRepository.create(START_INDEX,USER_ID, products);
         Order retrievedOrder = orderRepository.getById(START_INDEX);
 
-        assertEquals(retrievedOrder.getId(), START_INDEX);
+        assertEquals(retrievedOrder.getOrderId(), START_INDEX);
         assertTrue(retrievedOrder.equals(order));
 
     }
