@@ -40,36 +40,9 @@ class OrderServiceTest {
     private final static int ORDER_ID = 1;
 
 
-    /* public OrderServiceTest() {
-        MockitoAnnotations.initMocks(this);
-        this.orderService = new OrderService(orderRepository);
-    }
-/*
-    Produkt product1;
-    Produkt product2;
-    List<Produkt> products;
-    List<Order> orders;
-    Order order;
-    final int START_INDEX = 0;
-    final int USER_ID = 1;
-*/
-
-    @Before
- /*  void setup() {
-        orderRepository = mock(OrderRepository.class);
-        orderService = new OrderService(orderRepository);
-    }*/
-
     @Test
     void checkOrdersContainCreatedOrder() {
-        /*Order newOrder = mock(Order.class);
-        int userID = mock(int
-        orderRepository.create()
-        newOrder.add((Produkt) products);
 
-        ArgumentCaptor<List> productCaptor = ArgumentCaptor.forClass(List.class);
-        verify(newOrder, times(1)).add((Produkt) productCaptor.capture());
-        assertEquals(Arrays.asList(product1)), ((Produkt) productCaptor.capture()).getTytul());*/
     }
 
     @Test
@@ -93,12 +66,5 @@ class OrderServiceTest {
     @Test
     void delete() {
     }
-
- /*   private OrderRepository createOrderRepository() {
-        OrderRepository mock = mock(OrderRepository.class);
-
-      //  when(mock.getById(order.getOrderId()).thenReturn(order));
-        return mock;
-    }*/
 
 }

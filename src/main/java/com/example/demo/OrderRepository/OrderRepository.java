@@ -33,9 +33,8 @@ public class OrderRepository {
         return order;
     }
 
-
-
-   /* public void delete(int id) throws Exception {
+   /* Delete method version
+   public void delete(int id) throws Exception {
         for (Order order : orders) {
             if (order.getId() == id) {
                 orders.remove(id);
@@ -43,14 +42,14 @@ public class OrderRepository {
         }
     }*/
 
-/*
+/* Delete method version
     public void delete(int orderId) {
         this.orders = orders.stream()
                 .filter(order -> order.getOrderId() != orderId)
                 .collect(Collectors.toList());
     } */
 
-      public void delete(int orderId) throws Exception {
+    public void delete(int orderId) throws Exception {
         var itemIndex = IntStream.range(0, orders.size())
                 .filter(i -> orders.get(i).getOrderId() == orderId)
                 .findFirst()
@@ -68,7 +67,8 @@ public class OrderRepository {
         return new ArrayList<>(orders);
     }
 
-   /* public Order getById(int id) {
+   /* getById method version
+   public Order getById(int id) {
         for (Order order : orders) {
             if (order.getId() == id) {
                 return orders.get(id);
@@ -77,7 +77,7 @@ public class OrderRepository {
         return null;
     }*/
 
-    /*
+    /* getById method version
     public Order getById(int orderId) {
         Optional<Order> first = orders.stream()
                 .filter(order -> order.getOrderId() == orderId)
@@ -87,7 +87,7 @@ public class OrderRepository {
         return order;
     } */
 
-   public Order getById(int orderId) {
+    public Order getById(int orderId) {
         var index = IntStream.range(0, orders.size())
                 .filter(i -> orders.get(i).getOrderId() == orderId)
                 .findFirst()
